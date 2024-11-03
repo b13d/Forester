@@ -92,9 +92,7 @@ public class GameSettings : MonoBehaviour
                     var currentCount = currentItem.RemoveSeed();
                     RemoveSeed(currentItem.GetIdSeed);
                     var newSeed = Instantiate(prefabSeed.gameObject, (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition), Quaternion.identity);
-                    //newSeed.GetComponent<Seed>().SetPlanted = true;
                     newSeed.GetComponent<Seed>().Planted();
-                    //Destroy(_seedOnMouse.gameObject);
 
                     if (currentCount <= 0)
                     {
