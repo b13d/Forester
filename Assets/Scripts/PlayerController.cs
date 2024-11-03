@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour
 
     void Attack()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0) && GameSettings.instance.GetAxe.IsSelected)
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             _animator.SetTrigger("AttackTree");
         }

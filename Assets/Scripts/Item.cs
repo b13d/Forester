@@ -1,67 +1,64 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum Type
-{
-    SEED = 0,
-    AXE = 1,
-}
-
 public class Item : MonoBehaviour
 {
-    public Type typeItem;
+    [SerializeField]
+    Sprite _spriteDefault;
+    [SerializeField]
+    Sprite _spriteFocus;
+    [SerializeField]
+    TextMeshProUGUI _textCountSeed;
+    [SerializeField]
+    int _countSeed;
+    [SerializeField]
+    bool _isAxe;
 
-    [SerializeField]
-    int _count;
-    [SerializeField]
-    Sprite _imageDefault;
-    [SerializeField]
-    Sprite _imageSelected;
-    [SerializeField]
-    bool _isSelected;
-    [SerializeField]
-    Seed _seedPrefab;
-    [SerializeField]
-    int _idSeed;
-    [SerializeField]
-    Sprite _sprite;
+    public int idItem;
 
-    public bool IsSelected => _isSelected;
+    public int GetCountSeed => _countSeed;
 
-    public Sprite GetSprite => _sprite;
-
-    public int GetIdSeed => _idSeed;
-
-    public int CountSeed
+    #region METHODS
+    private void Start()
     {
-        get => _count;
-        set
+        if (!_isAxe)
         {
-            _count = value;
+            _textCountSeed.text = _countSeed.ToString();
         }
+
     }
 
-    public Seed GetSeed
+    public void SetFocus()
     {
-        get => _seedPrefab;
+        GetComponent<Image>().sprite = _spriteFocus;
     }
 
     public void SetDefault()
     {
-        GetComponent<Image>().sprite = _imageDefault;
-        _isSelected = false;
+        GetComponent<Image>().sprite = _spriteDefault;
     }
 
-    public void SetSelected()
+    public void AddCount()
     {
-        GetComponent<Image>().sprite = _imageSelected;
-        _isSelected = true;
+        _countSeed++;
+        UpdateText();
     }
 
-    public int RemoveSeed()
+    public void ReduceCount()
     {
-        _count--;
-        return _count;
+        _countSeed--;
+        UpdateText();
     }
+
+    public int GetCount => _countSeed;
+
+    public void UpdateText()
+    {
+        _textCountSeed.text = _countSeed.ToString();
+    }
+
+    #endregion
+
 
 }

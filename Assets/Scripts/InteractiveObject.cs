@@ -3,10 +3,11 @@ using UnityEngine;
 
 public enum OPTIONS
 {
-    WOOD = 0,
-    SEED1 = 1,
-    SEED2 = 2,
-    SEED3 = 3
+    SEED1 = 0,
+    SEED2 = 1,
+    SEED3 = 2,
+    WOOD = 3,
+
 }
 
 public class InteractiveObject : MonoBehaviour
@@ -53,7 +54,8 @@ public class InteractiveObject : MonoBehaviour
             } 
             else
             {
-                GameSettings.instance.AddSeed((int)_typeObject);
+                int idItem = GetComponent<Seed>().GetIdSeed;
+                GameSettings.instance.items.GetItem(idItem).AddCount();
             }
 
             Destroy(gameObject);
@@ -72,5 +74,11 @@ public class InteractiveObject : MonoBehaviour
             _isPlayerClose = false;
             _player = null;
         }
+    }
+
+    public void PlantSeed()
+    {
+        //GameSettings.instance.RemoveSeed((int)_typeObject);
+        //GameSettings.instance.UpdateTexts();
     }
 }

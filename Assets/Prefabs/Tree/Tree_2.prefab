@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &4891802947389863403
+--- !u!1001 &7219515479337878448
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -8,6 +8,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 529658725896984777, guid: 2b1227544b997854eb4cbde349b2bab7, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 2034006357, guid: b683b2d1301645d4d8f8e123b9c0df87, type: 3}
+    - target: {fileID: 4259295253369393648, guid: 2b1227544b997854eb4cbde349b2bab7, type: 3}
+      propertyPath: _seed
+      value: 
+      objectReference: {fileID: 7798925628448226505, guid: 3c9be5b1f776e3040a2356bc03494425, type: 3}
+    - target: {fileID: 5469315196795914308, guid: 2b1227544b997854eb4cbde349b2bab7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.004
+      objectReference: {fileID: 0}
+    - target: {fileID: 5469315196795914308, guid: 2b1227544b997854eb4cbde349b2bab7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.275
+      objectReference: {fileID: 0}
     - target: {fileID: 5527323900943152144, guid: 2b1227544b997854eb4cbde349b2bab7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -48,9 +64,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5719062142662065371, guid: 2b1227544b997854eb4cbde349b2bab7, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1971066319, guid: b683b2d1301645d4d8f8e123b9c0df87, type: 3}
     - target: {fileID: 8983319060369289363, guid: 2b1227544b997854eb4cbde349b2bab7, type: 3}
       propertyPath: m_Name
-      value: Tree_1
+      value: Tree_2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

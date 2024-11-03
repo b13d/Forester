@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameSettings : MonoBehaviour
@@ -9,49 +10,29 @@ public class GameSettings : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI _textWoods;
     [SerializeField]
-    TextMeshProUGUI _textSeeds1;
+    GameObject _canvasStart;
     [SerializeField]
-    TextMeshProUGUI _textSeeds2;
-    [SerializeField]
-    TextMeshProUGUI _textSeeds3;
+    bool _canPlant = true;
 
     int _coins;
     int _woods;
 
-    int _seeds1;
-    int _seeds2;
-    int _seeds3;
-
-    public Item currentItem;
+    public Items items;
     public Seed prefabSeed;
-    public List<int> _seedsList;
+   
     public static GameSettings instance;
 
     private GameObject _seedOnMouse;
 
-    [SerializeField]
-    GameObject _canvasStart;
-    [SerializeField]
-    List<Item> _items;
-    [SerializeField]
-    Item _axe;
-    [SerializeField]
-    PlayerCursor _cursor;
-    [SerializeField]
-    bool _canPlant = true;
 
-    public bool Plant
+
+    public bool IsCanPlant
     {
         get { return _canPlant; }
         set { _canPlant = value; }
     }
 
-    public Item GetAxe => _axe;
-
-    public PlayerCursor SetCursor
-    {
-        get { return _cursor; }
-    }
+    public int GetCoins => _coins;
 
     public GameObject SeedOnMouse
     {
@@ -71,53 +52,10 @@ public class GameSettings : MonoBehaviour
         }
     }
 
-
-
-    private void Update()
-    {
-        _cursor.transform.position = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-        if (Time.timeScale == 0 && Input.GetKeyDown(KeyCode.Space))
-        {
-            Time.timeScale = 1.0f;
-            Destroy(_canvasStart.gameObject);
-        }
-
-        if (prefabSeed != null)
-        {
-            if (Input.GetKeyDown(KeyCode.Mouse0))
-            {
-                if (currentItem.CountSeed > 0 && _canPlant)
-                {
-                    var currentCount = currentItem.RemoveSeed();
-                    RemoveSeed(currentItem.GetIdSeed);
-                    var newSeed = Instantiate(prefabSeed.gameObject, (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition), Quaternion.identity);
-                    newSeed.GetComponent<Seed>().Planted();
-
-                    if (currentCount <= 0)
-                    {
-                        prefabSeed = null;
-                    }
-                }
-
-            }
-        }
-    }
-
-    public List<int> GetSeedCount()
-    {
-        _seedsList = new List<int> { _seeds1, _seeds2, _seeds3 };
-
-        return _seedsList;
-    }
-
     void Initial()
     {
         _textCoins.text = _coins.ToString();
         _textWoods.text = _woods.ToString();
-        _textSeeds1.text = _seeds1.ToString();
-        _textSeeds2.text = _seeds2.ToString();
-        _textSeeds3.text = _seeds3.ToString();
     }
 
     public void AddCoin(int sum)
@@ -132,53 +70,5 @@ public class GameSettings : MonoBehaviour
         _woods++;
 
         _textWoods.text = _woods.ToString();
-    }
-
-    public void AddSeed(int idSeed)
-    {
-        if (idSeed == 1)
-        {
-            _seeds1++;
-            _textSeeds1.text = _seeds1.ToString();
-            _items[0].CountSeed = _seeds1;
-        }
-
-        if (idSeed == 2)
-        {
-            _seeds2++;
-            _textSeeds2.text = _seeds2.ToString();
-            _items[1].CountSeed = _seeds2;
-        }
-
-        if (idSeed == 3)
-        {
-            _seeds3++;
-            _textSeeds3.text = _seeds3.ToString();
-            _items[2].CountSeed = _seeds3;
-        }
-    }
-
-    public void RemoveSeed(int idSeed)
-    {
-        if (idSeed == 0)
-        {
-            _seeds1--;
-            _textSeeds1.text = _seeds1.ToString();
-            _items[0].CountSeed = _seeds1;
-        }
-
-        if (idSeed == 1)
-        {
-            _seeds2--;
-            _textSeeds2.text = _seeds2.ToString();
-            _items[1].CountSeed = _seeds2;
-        }
-
-        if (idSeed == 2)
-        {
-            _seeds3--;
-            _textSeeds3.text = _seeds3.ToString();
-            _items[2].CountSeed = _seeds3;
-        }
     }
 }

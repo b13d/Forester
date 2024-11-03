@@ -221,4 +221,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOnMouseCursor: 0
-  _typeObject: 0
+  _typeObject: 3
