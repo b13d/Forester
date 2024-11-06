@@ -1,25 +1,16 @@
 using UnityEngine;
 
-public class Car : MonoBehaviour
+public class Drink : MonoBehaviour
 {
     [SerializeField]
-    private UseObject _pressE;
-    [SerializeField]
-    Canvas _shop;
+    UseObject _pressE;
 
-    bool _canPress = false;
-
-    private void Start()
-    {
-        _pressE.gameObject.SetActive(false);
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
             _pressE.gameObject.SetActive(true);
-            _canPress = true;
         }
     }
 
@@ -28,18 +19,17 @@ public class Car : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             _pressE.gameObject.SetActive(false);
-            _canPress = false;
-            _shop.gameObject.SetActive(false);
         }
     }
 
     private void Update()
     {
-        if (_canPress)
+        if (_pressE.gameObject.activeSelf)
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                _shop.gameObject.SetActive(!_shop.gameObject.activeSelf);
+                FindObjectOfType<Stamina>().IncreaseInEndurance(3);
+                Destroy(gameObject);
             }
         }
     }

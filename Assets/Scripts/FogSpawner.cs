@@ -29,7 +29,7 @@ public class FogSpawner : MonoBehaviour
 
             Sequence sequence = DOTween.Sequence();
             sequence.Append(newFog.gameObject.transform.DOScale(0, 0));
-            sequence.Append(newFog.gameObject.transform.DOScale(Random.Range(1, 4), 1f));// mb here change value
+            sequence.Append(newFog.gameObject.transform.DOScale(Random.Range(3f, 7f), 1f));// mb here change value
             newFog.transform.position = new Vector2(Random.Range(-8, 8), Random.Range(-6, 6));
 
             float randomValue = Random.Range(10, 25f);

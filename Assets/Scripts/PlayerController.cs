@@ -7,18 +7,19 @@ public class PlayerController : MonoBehaviour
 
     Animator _animator;
     Rigidbody2D _rb;
+    Stamina _stamina;
 
     [SerializeField]
     float _speedPlayer;
 
     private void Start()
     {
+        _stamina = GetComponent<Stamina>();
         _animator = GetComponent<Animator>();
         _rb = GetComponent<Rigidbody2D>();
     }
 
- 
-
+    public Stamina Stamina => _stamina;
 
     void Update()
     {
@@ -33,7 +34,6 @@ public class PlayerController : MonoBehaviour
         _rb.linearVelocity = new Vector2(_horizontal, _vertical) * _speedPlayer;
 
         Walk();
-        Attack();
     }
 
     void Walk()
@@ -46,14 +46,6 @@ public class PlayerController : MonoBehaviour
         if (_rb.linearVelocityX == 0 && _rb.linearVelocityY == 0)
         {
             _animator.SetBool("Walk", false);
-        }
-    }
-
-    void Attack()
-    {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            _animator.SetTrigger("AttackTree");
         }
     }
 }

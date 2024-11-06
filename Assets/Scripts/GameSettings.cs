@@ -14,17 +14,18 @@ public class GameSettings : MonoBehaviour
     [SerializeField]
     bool _canPlant = true;
 
-    int _coins;
+    int _coins = 100;
     int _woods;
 
     public Items items;
     public Seed prefabSeed;
-   
+
     public static GameSettings instance;
 
     private GameObject _seedOnMouse;
 
 
+    #region Property
 
     public bool IsCanPlant
     {
@@ -32,7 +33,31 @@ public class GameSettings : MonoBehaviour
         set { _canPlant = value; }
     }
 
-    public int GetCoins => _coins;
+    public int Coins
+    {
+        get { return _coins; }
+        set
+        {
+            if (value >= 0)
+            {
+                _coins = value;
+                _textCoins.text = _coins.ToString();
+            }
+        }
+    }
+
+    public int Woods
+    {
+        get { return _woods; }
+        set
+        {
+            if (value >= 0)
+            {
+                _woods = value;
+                _textWoods.text = _woods.ToString();
+            }
+        }
+    }
 
     public GameObject SeedOnMouse
     {
@@ -40,10 +65,13 @@ public class GameSettings : MonoBehaviour
         get { return _seedOnMouse; }
     }
 
+    #endregion
+
+
+    #region Methods
+
     void Start()
     {
-        //Time.timeScale = 0;
-
         if (instance == null)
         {
             instance = this;
@@ -71,4 +99,22 @@ public class GameSettings : MonoBehaviour
 
         _textWoods.text = _woods.ToString();
     }
+
+    public void BuySeed()
+    {
+        Debug.Log("Вычисляю стоимость");
+        Debug.Log("Добавляю саженец");
+    }
+
+    public void SellWood()
+    {
+        Debug.Log("Продаю дерево");
+        Debug.Log("Получаю денежку");
+    }
+
+    #endregion
+
+
+
+
 }

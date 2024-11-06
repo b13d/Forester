@@ -124,7 +124,7 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: Miscellaneous items
     originalName: 
-    pivot: {x: 0.5157895, y: -0.8504673}
+    pivot: {x: 1.6610171, y: -0.3943662}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -132,8 +132,8 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 190
-      height: 107
+      width: 59
+      height: 142
     spriteID: d4b41ba75408bd647b5a934560b06562
     spriteBone: []
     spriteOutline: []
@@ -157,9 +157,9 @@ ScriptedImporter:
       additiveSortOrder: 0
       cellRect:
         x: 2
-        y: 91
-        width: 190
-        height: 107
+        y: 56
+        width: 59
+        height: 142
       spriteId: d4b41ba75408bd647b5a934560b06562
     linkedCells: []
     parentIndex: -1

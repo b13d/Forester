@@ -6,11 +6,15 @@ using UnityEngine.UI;
 public class Inventory : MonoBehaviour
 {
     [SerializeField]
-    List<GameObject> _prefabObject = new List<GameObject>();
+    List<GameObject> _prefabObject = new();
     [SerializeField]
-    List<GameObject> _itemsList = new List<GameObject>();
+    List<GameObject> _itemsList = new();
     [SerializeField]
     int _currentItem = 0;
+    [SerializeField]
+    List<Item> _itemsSeed = new();
+
+    public List<Item> GetItemsSeed => _itemsSeed;
 
     public GameObject GetPrefabCurrentItem
     {
@@ -24,9 +28,6 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    void Start()
-    {
-    }
 
     void Update()
     {

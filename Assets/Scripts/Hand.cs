@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Hand : MonoBehaviour
@@ -8,38 +9,59 @@ public class Hand : MonoBehaviour
     SpriteRenderer _cursorSprite;
     Inventory _inventory;
     Seed _selectedSeed;
-
-    bool _currentItemEmpty;
+    List<Item> _seedItems = new();
+    Animator _animator;
+    Stamina _stamina;
 
     private void Start()
     {
+        _stamina = transform.parent.GetComponent<PlayerController>().Stamina;
+        _animator = transform.parent.GetComponent<Animator>();
         _inventory = transform.parent.GetComponent<Inventory>();
         _cursorSprite = _cursor.GetComponent<SpriteRenderer>();
+        _seedItems = _inventory.GetItemsSeed;
     }
 
     void Update()
     {
-        //if (_currentItemEmpty)
-        //{
-        //    _selectedSeed = null;
-        //    _cursorSprite.sprite = null;
-        //    return;
-        //}
-
         _cursor.transform.position = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         if (_inventory && _inventory.GetPrefabCurrentItem)
         {
             Seed seed = _inventory.GetPrefabCurrentItem.GetComponent<Seed>();
             _selectedSeed = seed;
-            _cursorSprite.sprite = seed.GetSprite.sprite;
 
-            Planting();
+            if (_seedItems[seed.GetIdSeed].GetCountSeed <= 0)
+            {
+                _selectedSeed = null;
+                _cursorSprite.sprite = null;
+            } 
+            else
+            {
+                _cursorSprite.sprite = seed.GetSprite.sprite;
+                Planting();
+            }
         }
         else
         {
+            Attack();
+
             _selectedSeed = null;
             _cursorSprite.sprite = null;
+        }
+    }
+
+    void Attack()
+    {
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            if (_animator.GetBool("Walk"))
+            {
+                return;
+            }
+
+            _stamina.WasteOfStamina(1.5f);
+            _animator.SetTrigger("AttackTree");
         }
     }
 
@@ -48,12 +70,10 @@ public class Hand : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse0) && GameSettings.instance.IsCanPlant)
         {
             int idItem = _selectedSeed.GetIdSeed;
-            int count = GameSettings.instance.items.GetItem(idItem).GetCount;
+            int count = GameSettings.instance.items.GetItem(idItem).GetCountSeed;
 
             if (_selectedSeed != null && count > 0)
             {
-                _currentItemEmpty = false;
-
                 GameSettings.instance.items.GetItem(idItem).ReduceCount();
 
                 var position = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -61,17 +81,7 @@ public class Hand : MonoBehaviour
                 newSeed.GetComponent<Seed>().Planted();
                 newSeed.GetComponent<InteractiveObject>().PlantSeed();
 
-                count = GameSettings.instance.items.GetItem(idItem).GetCount;
-
-                if (count <= 0)
-                {
-                    _currentItemEmpty = true;
-                }
-            }
-
-            if (count <= 0)
-            {
-                _currentItemEmpty = true;
+                count = GameSettings.instance.items.GetItem(idItem).GetCountSeed;
             }
         }
     }

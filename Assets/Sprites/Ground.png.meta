@@ -389,7 +389,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -398,6 +398,50 @@ TextureImporter:
       bones: []
       spriteID: db4fbe00c6a0a6d43b4535eb72934151
       internalID: -1105711619
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_12
+      rect:
+        serializedVersion: 2
+        x: 107
+        y: 45
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 289f49da20b0dc74a88cd84f18b6ffdd
+      internalID: -483841525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ground_13
+      rect:
+        serializedVersion: 2
+        x: 107
+        y: 11
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e77dad11a9b42604baa9ef2ef59b38eb
+      internalID: 875561444
       vertices: []
       indices: 
       edges: []
@@ -420,6 +464,8 @@ TextureImporter:
       Ground_1: 1193248332
       Ground_10: -460806757
       Ground_11: -1105711619
+      Ground_12: -483841525
+      Ground_13: 875561444
       Ground_2: 2028961901
       Ground_3: -349335947
       Ground_4: -554395435

@@ -1,17 +1,20 @@
+using TMPro;
 using UnityEngine;
 
-public class Car : MonoBehaviour
+public class Nameplate : MonoBehaviour
 {
     [SerializeField]
-    private UseObject _pressE;
+    UseObject _pressE;
     [SerializeField]
-    Canvas _shop;
-
-    bool _canPress = false;
+    GameObject _area;
+    [SerializeField]
+    int _priceArea;
+    [SerializeField]
+    TextMeshProUGUI _textPriceArea;
 
     private void Start()
     {
-        _pressE.gameObject.SetActive(false);
+        _textPriceArea.text = _priceArea.ToString();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -19,7 +22,6 @@ public class Car : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             _pressE.gameObject.SetActive(true);
-            _canPress = true;
         }
     }
 
@@ -28,18 +30,20 @@ public class Car : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             _pressE.gameObject.SetActive(false);
-            _canPress = false;
-            _shop.gameObject.SetActive(false);
         }
     }
 
     private void Update()
     {
-        if (_canPress)
+        if (_pressE.gameObject.activeSelf)
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            bool canBuy = GameSettings.instance.Coins >= _priceArea;
+
+            if (Input.GetKeyDown(KeyCode.E) && canBuy)
             {
-                _shop.gameObject.SetActive(!_shop.gameObject.activeSelf);
+                _area.SetActive(false);
+                GameSettings.instance.Coins -= _priceArea;
+                Destroy(gameObject);
             }
         }
     }

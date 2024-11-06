@@ -51,8 +51,6 @@ public class Item : MonoBehaviour
         UpdateText();
     }
 
-    public int GetCount => _countSeed;
-
     public void UpdateText()
     {
         _textCountSeed.text = _countSeed.ToString();
