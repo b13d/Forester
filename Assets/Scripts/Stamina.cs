@@ -11,10 +11,20 @@ public class Stamina : MonoBehaviour
     [SerializeField]
     Slider _sliderStamina;
 
+    TimeDayNight _timeDayNight;
+
     void Start()
     {
         _sliderStamina.value = MAX_VALUE;
+        _timeDayNight = FindObjectOfType<TimeDayNight>();
 
+        StartCoroutine(Expiration());
+    }
+
+    public void ResetStamina()
+    {
+        StopAllCoroutines();
+        _sliderStamina.value = MAX_VALUE;
         StartCoroutine(Expiration());
     }
 
@@ -30,7 +40,7 @@ public class Stamina : MonoBehaviour
         if (_sliderStamina.value <= MIN_VALUE)
         {
             _sliderStamina.value = MIN_VALUE;
-
+            _timeDayNight.NewDay();
             Debug.LogError("Стамина закончилась, игрок уснул");
         }
     }

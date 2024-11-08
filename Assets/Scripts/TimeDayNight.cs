@@ -1,6 +1,17 @@
+using DG.Tweening;
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.UI;
+
+[Serializable]
+public class AnimationDayOver
+{
+    public GameObject canvas;
+    public TextMeshProUGUI textDayOver;
+    public Image imageBg;
+}
 
 public class TimeDayNight : MonoBehaviour
 {
@@ -10,6 +21,12 @@ public class TimeDayNight : MonoBehaviour
     TextMeshProUGUI _textDay;
     [SerializeField]
     Light2D _light;
+    [SerializeField]
+    Vector2 _posSpawnPlayer;
+    public AnimationDayOver animationDayOver;
+
+    PlayerController _player;
+    Stamina _stamina;
 
     int _countDay = 1;
     const float START_SECONDS = 10f;
@@ -18,6 +35,8 @@ public class TimeDayNight : MonoBehaviour
     int _minutes = 0;
     int _hours = 8;
 
+    bool _wasUpdateDay = false;
+
     void Awake()
     {
         Time.timeScale = 50;
@@ -25,12 +44,57 @@ public class TimeDayNight : MonoBehaviour
         string minutes = _minutes == 0 ? "00" : _minutes.ToString();
         _textTime.text = $"{hours}:{minutes}";
         _textDay.text = $"Day {_countDay}";
+
+        _player = FindObjectOfType<PlayerController>();
+        _stamina = FindObjectOfType<Stamina>();
+    }
+
+    private void Start()
+    {
+
+    }
+
+    void HideCanvas()
+    {
+        animationDayOver.canvas.SetActive(false);
     }
 
     void ChangeDay()
     {
+        _wasUpdateDay = true;
         _countDay++;
         _textDay.text = $"Day {_countDay}";
+
+    }
+
+    public void NewDay()
+    {
+        if (_hours > 1 && _hours <= 23)
+        {
+            ChangeDay();
+        }
+
+        _hours = 8;
+        _minutes = 0;
+
+        string hours = $"0{_hours}";
+        string minutes = $"0{_minutes}";
+        _textTime.text = $"{hours}:{minutes}";
+
+        _stamina.ResetStamina();
+        _player.gameObject.transform.position = _posSpawnPlayer;
+
+        animationDayOver.canvas.SetActive(true);
+        Sequence sequence = DOTween.Sequence();
+        Sequence sequenceText = DOTween.Sequence();
+
+        animationDayOver.textDayOver.gameObject.transform.localScale = Vector2.zero;
+        sequenceText.Append(animationDayOver.textDayOver.gameObject.transform.DOScale(1, 1f));
+        sequence.Append(animationDayOver.imageBg.GetComponent<Image>().DOColor(new Color(0.462f, 0.338f, 0.192f, 1), 1f));
+        sequenceText.Append(animationDayOver.textDayOver.gameObject.transform.DOScale(0, 2f));
+        sequence.Append(animationDayOver.imageBg.GetComponent<Image>().DOColor(new Color(0.462f, 0.338f, 0.192f, 0), 2f));
+
+        Invoke("HideCanvas", 2.5f);
     }
 
     void Update()
@@ -52,6 +116,11 @@ public class TimeDayNight : MonoBehaviour
                     _hours = 0;
 
                     ChangeDay();
+                }
+
+                if (_hours == 1)
+                {
+                    NewDay();
                 }
             }
 
