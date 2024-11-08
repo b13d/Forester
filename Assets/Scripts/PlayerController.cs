@@ -3,23 +3,21 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     float _horizontal;
-    float _vertical;
 
-    Animator _animator;
-    Rigidbody2D _rb;
-    Stamina _stamina;
+    public int jumpForce;
+
+    Animator animator;
+    Rigidbody2D rb;
+
 
     [SerializeField]
     float _speedPlayer;
 
     private void Start()
     {
-        _stamina = GetComponent<Stamina>();
-        _animator = GetComponent<Animator>();
-        _rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
     }
-
-    public Stamina Stamina => _stamina;
 
     void Update()
     {
@@ -29,23 +27,31 @@ public class PlayerController : MonoBehaviour
         }
 
         _horizontal = Input.GetAxis("Horizontal");
-        _vertical = Input.GetAxis("Vertical");
-
-        _rb.linearVelocity = new Vector2(_horizontal, _vertical) * _speedPlayer;
+        rb.linearVelocityX = _horizontal * _speedPlayer;
 
         Walk();
+
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            Jump();
+        }
+    }
+
+    void Jump()
+    {
+        rb.AddForceY(jumpForce, ForceMode2D.Impulse);
     }
 
     void Walk()
     {
-        if (_rb.linearVelocityX != 0 || _rb.linearVelocityY != 0)
+        if (rb.linearVelocityX != 0)
         {
-            _animator.SetBool("Walk", true);
+            animator.SetBool("Walk", true);
         }
 
-        if (_rb.linearVelocityX == 0 && _rb.linearVelocityY == 0)
+        if (rb.linearVelocityX == 0)
         {
-            _animator.SetBool("Walk", false);
+            animator.SetBool("Walk", false);
         }
     }
 }

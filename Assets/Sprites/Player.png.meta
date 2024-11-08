@@ -145,13 +145,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Player_Front
+      name: Player_idle
       rect:
         serializedVersion: 2
         x: 0
-        y: 20
-        width: 43
-        height: 38
+        y: 1
+        width: 7
+        height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -160,20 +160,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 00c347bdf394240418ac0ab25c3bdbc9
-      internalID: -1665964465
+      spriteID: e992074b45fd4a746b330da9a4990499
+      internalID: 244507046
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Back
+      name: Player_run
       rect:
         serializedVersion: 2
-        x: 49
-        y: 20
-        width: 43
-        height: 38
+        x: 12
+        y: 1
+        width: 7
+        height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -182,20 +182,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b4ff43f53cd8d3049a7ff525cf405459
-      internalID: -209162163
+      spriteID: c5727864a6904b147a97d04105dd0cef
+      internalID: 1847792965
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Axe
+      name: Player_idle2
       rect:
         serializedVersion: 2
-        x: 7
-        y: 0
-        width: 20
-        height: 16
+        x: 29
+        y: 1
+        width: 7
+        height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -204,8 +204,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 84da0602d1f2e3847b82826fbc3e6022
-      internalID: 1488460677
+      spriteID: 5f28f1fd77feb8e4ebd6b3aae475a22c
+      internalID: -500236546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_run2
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 1
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c93dcb40f6d55804fb160b07544b6cb4
+      internalID: 626954493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_run3
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 1
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48b3306be3246684fb0c8a85a97827d9
+      internalID: 2090840963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_run4
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 1
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7935f074dc7c8dd43bc763b56d37bc8c
+      internalID: 482423087
       vertices: []
       indices: 
       edges: []
@@ -224,11 +290,12 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Axe: 1488460677
-      Player_1: 7364682651488144517
-      Player_2: -6287787046888575383
-      Player_Back: -209162163
-      Player_Front: -2311659948842064771
+      Player_idle: 244507046
+      Player_idle2: -6287787046888575383
+      Player_run: 7364682651488144517
+      Player_run2: 626954493
+      Player_run3: 2090840963
+      Player_run4: 482423087
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

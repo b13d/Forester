@@ -17,9 +17,6 @@ public class GameSettings : MonoBehaviour
     int _coins = 100;
     int _woods;
 
-    public Items items;
-    public Seed prefabSeed;
-
     public static GameSettings instance;
 
     private GameObject _seedOnMouse;
