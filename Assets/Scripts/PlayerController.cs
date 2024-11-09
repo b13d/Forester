@@ -5,6 +5,7 @@ public class PlayerController : MonoBehaviour
     float _horizontal;
 
     public int jumpForce;
+    public SpriteRenderer spritePlayer;
 
     Animator animator;
     Rigidbody2D rb;
@@ -35,6 +36,8 @@ public class PlayerController : MonoBehaviour
         {
             Jump();
         }
+
+        Debug.Log(rb.linearVelocityX);
     }
 
     void Jump()
@@ -44,14 +47,24 @@ public class PlayerController : MonoBehaviour
 
     void Walk()
     {
+        if (rb.linearVelocityX < 0)
+        {
+            spritePlayer.flipX = false;
+        }
+
+        if (rb.linearVelocityX > 0) 
+        {
+            spritePlayer.flipX = true;
+        }
+
         if (rb.linearVelocityX != 0)
         {
-            animator.SetBool("Walk", true);
+            animator.SetBool("walk", true);
         }
 
         if (rb.linearVelocityX == 0)
         {
-            animator.SetBool("Walk", false);
+            animator.SetBool("walk", false);
         }
     }
 }
